@@ -1,24 +1,30 @@
 <template>
-  <h2>Counter</h2>
-  <p>{{ counter }} <sup>2</sup> = {{ getSquareCounter }}</p>
-  <p>{{ counter }} <sup>2</sup> = {{ getSquareCounter }}</p>
-  <p>{{ counter }} <sup>2</sup> = {{ getSquareCounter }}</p>
-  <p>{{ counter }} <sup>2</sup> = {{ getSquareCounter }}</p>
-  <p>{{ counter }} <sup>2</sup> = {{ getSquareCounter }}</p>
+  <h1>{{ customTitle }}</h1>
   <p>{{ counter }} <sup>2</sup> = {{ getSquareCounter }}</p>
  
     <div>
-        <button>+1</button>
-        <button>-1</button>
+        <button @click="modifyCounter(+1)">+1</button>
+        <button @click="modifyCounter(-1)">-1</button>
     </div>
 </template>
 
 <script>
 export default {
   name: "Counter",
+  props: {
+    start: {
+      tyoe: Number,
+      required: false,
+      default: 5,
+      validator(value){
+        return value >=0
+      }
+    },
+    title: String,
+  },
   data() {
     return {
-      counter: 5,
+      counter: this.start,
     };
   },
   methods: {
@@ -26,12 +32,18 @@ export default {
         console.log("getSquareValue");
         return this.counter * this.counter;
     },
+    modifyCounter(data){
+      this.counter += data;
+    },
   },
   computed: {
       getSquareCounter() {
           console.log("computed");
           return this.getSquareValue();
-      }
+      },
+      customTitle(){        
+        return this.title ? this.title : "Counter" 
+      },
   },
 };
 </script>
