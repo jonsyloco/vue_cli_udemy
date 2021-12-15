@@ -1,13 +1,13 @@
 <template>
   <h1>Indecision</h1>
-  <img src="https://patriciaelias.com.br/wp-content/uploads/2021/01/33.png" alt="bg" />
+  <img v-if="img" :src="img" alt="bg" />
   <div class="bg-dark"></div>
   <div class="indecision-container">
     <input type="text" v-model="question" placeholder="Hazme una pregunta" />
-    <p>Recuerda terminar con un signo de interrogación(?)</p>
-    <div>
-      <h2>Seré Millonario?</h2>
-      <h1>Si, No, ....pensando</h1>
+    <p>Recuerda terminar con un signo de interrogación (?)</p>
+    <div v-if="isValidQuestion">
+      <h2>{{ question }}</h2>
+      <h1>{{ answer }}</h1>
     </div>
   </div>
 </template>
@@ -17,8 +17,35 @@ export default {
   name: "Indecision",
   data(){
       return {
-          question: ''
+          question: '',
+          answer: null,
+          img: '',
+          isValidQuestion: false,
       }
+  },
+  methods: {
+    async getAnswer() {
+      this.answer = 'Pensando...';
+      const {answer, image} = await fetch('https://yesno.wtf/api')
+                          .then(r => {
+                              return r.json();
+                          });
+      this.answer = answer == "yes"?'Si!':'No!';
+      this.img = image;
+      console.log(answer);
+    }
+  },
+  watch: {
+    question( value, oldValue){
+      //console.log({value, oldValue});
+      this.isValidQuestion = false;
+      if(!value.includes('?')){
+        return;
+      }
+      this.isValidQuestion = true;
+      this.getAnswer()
+        
+    }
   },
 };
 </script>
