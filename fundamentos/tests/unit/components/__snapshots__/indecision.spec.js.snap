@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Indecision Component match con el snapshot 1`] = `
+<div>
+  <h1>Counter</h1>
+  <p>5 <sup>2</sup> = 25</p>
+  <p data-testid="counter">5</p>
+  <div class="botones"><button>+1</button><button>-1</button></div>
+</div>
+`;
