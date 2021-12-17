@@ -1,4 +1,7 @@
 <template>
+
+<div>
+
   <h1>Indecision</h1>
   <img v-if="img" :src="img" alt="bg" />
   <div class="bg-dark"></div>
@@ -10,6 +13,7 @@
       <h1>{{ answer }}</h1>
     </div>
   </div>
+</div>
 </template>
 
 <script>

@@ -7,7 +7,7 @@
 
 <script>
 //import Counter from './components/Counter.vue';
-import Indecision from './components/Indecision.vue';
+import Indecision from '@/components/Indecision.vue';
 export default {
   components: { Indecision },
   name: 'App',

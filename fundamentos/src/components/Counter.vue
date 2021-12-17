@@ -1,11 +1,15 @@
 <template>
+<div>
   <h1>{{ customTitle }}</h1>
   <p>{{ counter }} <sup>2</sup> = {{ getSquareCounter }}</p>
+  <p data-testid="counter"> {{ counter}} </p>
  
-    <div>
+    <div class="botones">
         <button @click="modifyCounter(+1)">+1</button>
         <button @click="modifyCounter(-1)">-1</button>
     </div>
+
+</div>
 </template>
 
 <script>
@@ -29,7 +33,7 @@ export default {
   },
   methods: {
     getSquareValue() {
-        console.log("getSquareValue");
+        //console.log("getSquareValue");
         return this.counter * this.counter;
     },
     modifyCounter(data){
@@ -38,7 +42,7 @@ export default {
   },
   computed: {
       getSquareCounter() {
-          console.log("computed");
+          //console.log("computed");
           return this.getSquareValue();
       },
       customTitle(){        
