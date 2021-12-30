@@ -2,9 +2,12 @@
 
 exports[`Indecision Component match con el snapshot 1`] = `
 <div>
-  <h1>Counter</h1>
-  <p>5 <sup>2</sup> = 25</p>
-  <p data-testid="counter">5</p>
-  <div class="botones"><button>+1</button><button>-1</button></div>
+  <h1>Indecision</h1>
+  <!--v-if-->
+  <div class="bg-dark"></div>
+  <div class="indecision-container"><input type="text" placeholder="Hazme una pregunta">
+    <p>Recuerda terminar con un signo de interrogación (?)</p>
+    <!--v-if-->
+  </div>
 </div>
 `;

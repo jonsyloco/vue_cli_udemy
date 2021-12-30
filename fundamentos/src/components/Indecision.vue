@@ -29,20 +29,29 @@ export default {
   },
   methods: {
     async getAnswer() {
-      this.answer = 'Pensando...';
-      const {answer, image} = await fetch('https://yesno.wtf/api')
-                          .then(r => {
-                              return r.json();
-                          });
-      this.answer = answer == "yes"?'Si!':'No!';
-      this.img = image;
-      console.log(answer);
+      try {
+        
+        this.answer = 'Pensando...';
+        const {answer, image} = await fetch('https://yesno.wtf/api')
+                            .then(r => {
+                                return r.json();
+                            });
+        this.answer = answer == "yes"?'Si!':'No!';
+        this.img = image;
+        console.log(answer);
+      } catch (error) {
+        console.log("Indecision Component:",error);
+        this.answer = 'No se pudo cargar del API';
+        this.img = null;
+        
+      }
     }
   },
   watch: {
     question( value, oldValue){
       //console.log({value, oldValue});
       this.isValidQuestion = false;
+      console.log("new value", value);
       if(!value.includes('?')){
         return;
       }
